@@ -1,10 +1,37 @@
-# spark-component
+# Spark Component
 
-A Clojure library designed to ... well, that part is up to you.
+A Clojure component to manage the lifecycle of a Spark-context using
+[Flambo](https://github.com/yieldbot/flambo) and [the component
+pattern by Stuart Sierra](https://github.com/stuartsierra/component).
+
+## Installation
+
+[[http://clojars.org/vita-io/spark-component/latest-version.svg]]
 
 ## Usage
 
-FIXME
+```clojure
+
+(ns my-app
+  (:require [components.spark :refer [new-spark]]
+            [flambo.conf      :as conf]))
+
+
+(defn my-system [config]
+  (let [spark-config (-> (conf/spark-conf)
+                         (conf/master   (config :spark-master-url "local"))
+                         (conf/app-name (config :spark-app-name "my_app")))]
+    (component/system-map
+      :spark (new-spark spark-config))))
+
+
+(defn -main []
+  (let [s (component/start
+            (my-system {:spark-master-url "local" :spark-app-name "my_app"}))]
+    ;... spark-job
+    ))
+
+```
 
 ## License
 

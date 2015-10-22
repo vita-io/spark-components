@@ -6,7 +6,7 @@ pattern by Stuart Sierra](https://github.com/stuartsierra/component).
 
 ## Installation
 
-[[http://clojars.org/vita-io/spark-component/latest-version.svg]]
+[![Clojars Project](http://clojars.org/vita-io/spark-component/latest-version.svg)](http://clojars.org/vita-io/spark-component)
 
 ## Usage
 
